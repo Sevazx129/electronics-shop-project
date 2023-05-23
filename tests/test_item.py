@@ -10,5 +10,6 @@ def test_init():
 def test_calculate_total_price():
     assert item1.calculate_total_price() == 230000
 
+item1.apply_discount()
 def test_apply_discount():
-    assert item1.apply_discount() == 8000
+    assert item1.price == 8000
