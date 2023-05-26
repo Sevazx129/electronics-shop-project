@@ -1,3 +1,6 @@
+from csv import DictReader
+
+file = 'items.csv'
 class Item:
     """
     Класс для представления товара в магазине.
@@ -25,3 +28,28 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, add_name: str):
+        if len(add_name) > 10:
+            raise Exception('Длина наименования товара превышает 10 символов')
+        else:
+            self.__name = add_name
+
+    @classmethod
+    def instantiate_from_csv(cls, file):
+        cls.all.clear()
+
+        with open(file, newline='') as f:
+            DictReader_obj = DictReader(f)
+            for row in DictReader_obj:
+               cls.all.append(cls(row['name'], int(row['price']), int(row['quantity'])))
+
+    @staticmethod
+    def string_to_number(line):
+        a = float(line)
+        return int(a)
