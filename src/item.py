@@ -41,8 +41,8 @@ class Item:
 
     @name.setter
     def name(self, add_name: str):
-        if len(add_name) > 10:
-            raise Exception('Длина наименования товара превышает 10 символов')
+        if len(add_name) >= 20:
+            raise Exception('Длина наименования товара превышает 20 символов')
         else:
             self.__name = add_name
 
