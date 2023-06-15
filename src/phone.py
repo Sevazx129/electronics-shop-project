@@ -17,7 +17,7 @@ class Phone(Item):
 
     @number_of_sim.setter
     def number_of_sim(self, add_number_of_sim):
-        if int(add_number_of_sim) > 0:
+        if (int(add_number_of_sim) > 0) and isinstance(add_number_of_sim, int):
             self.__number_of_sim = int(add_number_of_sim)
 
         else:
