@@ -3,6 +3,7 @@ file = 'items.csv'
 from src.item import Item
 from src.phone import Phone
 from src.keyboard import KeyBoard
+from src.item import Item, CSVNotFoundError, InstantiateCSVError
 item1 = Item('Samsung', 10000, 23)
 Item.pay_rate = 0.8
 def test_init():
@@ -63,6 +64,15 @@ def test_keyboard():
 
     kb.change_lang().change_lang()
     assert str(kb.language) == "RU"
+
+def test_instantiate_csv():
+    # Проверка ошибок
+    # Тест ошибки "Нет файла"
+    with pytest.raises(CSVNotFoundError):
+        Item.instantiate_csv('../src/items2.csv')
+    # Тест ошибки "файл поврежден"
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_csv('../src/items3.csv')
 
 
 
